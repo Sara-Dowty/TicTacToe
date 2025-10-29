@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>CMakeLists.txt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ffc66d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CMakeLists.txt</font>
+</center></td></tr></table>
+<pre><span class="s0">cmake_minimum_required</span><span class="s1">(VERSION 3.29)</span>
+<span class="s0">project</span><span class="s1">(tictactoeSource_SaraDowty)</span>
+
+<span class="s0">set</span><span class="s1">(CMAKE_CXX_STANDARD 20)</span>
+<span class="s0">set</span><span class="s1">(CMake_CXX_FLAGS </span><span class="s3">&quot;</span><span class="s4">${</span><span class="s1">CMAKE_CXX_FLAGS</span><span class="s4">} </span><span class="s1">-march=native</span><span class="s3">&quot;</span><span class="s1">)</span>
+<span class="s0">add_compile_options</span><span class="s1">(-msse4.2)</span>
+<span class="s0">add_executable</span><span class="s1">(tictactoeSource_SaraDowty main.cpp</span>
+        <span class="s1">Mark.h</span>
+        <span class="s1">Square.cpp</span>
+        <span class="s1">Square.h</span>
+        <span class="s1">test_Square.cpp</span>
+        <span class="s1">test_Square.h</span>
+        <span class="s1">Row.cpp</span>
+        <span class="s1">Row.h</span>
+        <span class="s1">testRow.cpp</span>
+        <span class="s1">testRow.h</span>
+        <span class="s1">Grid.cpp</span>
+        <span class="s1">Grid.h</span>
+        <span class="s1">Player.cpp</span>
+        <span class="s1">Player.h</span>
+        <span class="s1">testPlayer.cpp</span>
+        <span class="s1">testPlayer.h</span>
+        <span class="s1">GridView.cpp</span>
+        <span class="s1">GridView.h</span>
+        <span class="s1">TicTacToe.cpp</span>
+        <span class="s1">TicTacToe.h</span>
+        <span class="s1">GridModel.cpp</span>
+        <span class="s1">GridModel.h</span>
+<span class="s1">)</span>
+</pre>
+</body>
+</html>

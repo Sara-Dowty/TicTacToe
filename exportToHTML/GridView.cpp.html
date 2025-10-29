@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>GridView.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #bcbec4;}
+.s5 { color: #cf8e6d;}
+.s6 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+GridView.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/10/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;GridView.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&lt;iostream&gt;</span>
+
+<span class="s1">GridView::GridView</span><span class="s4">(</span><span class="s5">const </span><span class="s1">GridModel</span><span class="s4">&amp; </span><span class="s1">grid_model</span><span class="s4">) </span><span class="s1">: grid_model</span><span class="s4">(</span><span class="s1">grid_model</span><span class="s4">){</span>
+    <span class="s0">//Referencing the grid model here</span>
+ <span class="s4">}</span>
+<span class="s0">//Switching Mark enum to a char for display purposes</span>
+<span class="s5">char </span><span class="s1">GridView::markToChar</span><span class="s4">(</span><span class="s1">Mark mark</span><span class="s4">) </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s5">switch </span><span class="s4">(</span><span class="s1">mark</span><span class="s4">) {</span>
+        <span class="s5">case </span><span class="s1">Mark::X:</span>
+            <span class="s5">return </span><span class="s3">'X'</span><span class="s4">;</span>
+        <span class="s5">case </span><span class="s1">Mark::O:</span>
+            <span class="s5">return </span><span class="s3">'O'</span><span class="s4">;</span>
+        <span class="s5">default</span><span class="s1">:</span>
+            <span class="s5">return </span><span class="s3">' '</span><span class="s4">;</span>
+    <span class="s4">}</span>
+<span class="s4">}</span>
+<span class="s0">//Core of the program. Displaying the grid.</span>
+<span class="s5">void </span><span class="s1">GridView::displayGrid</span><span class="s4">() </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s5">char </span><span class="s1">position_char </span><span class="s4">= </span><span class="s3">'1'</span><span class="s4">; </span><span class="s0">//Display numbers in empty squares</span>
+    <span class="s5">const </span><span class="s1">Grid</span><span class="s4">&amp; </span><span class="s1">grid </span><span class="s4">= </span><span class="s1">grid_model</span><span class="s4">.</span><span class="s1">getGrid</span><span class="s4">();</span>
+    <span class="s5">for </span><span class="s4">(</span><span class="s5">int </span><span class="s1">r1 </span><span class="s4">= </span><span class="s6">0</span><span class="s4">; </span><span class="s1">r1 </span><span class="s4">&lt; </span><span class="s6">3</span><span class="s4">; </span><span class="s1">r1</span><span class="s4">++) {</span>
+        <span class="s5">for </span><span class="s4">(</span><span class="s5">int </span><span class="s1">r2 </span><span class="s4">= </span><span class="s6">0</span><span class="s4">; </span><span class="s1">r2 </span><span class="s4">&lt; </span><span class="s6">3</span><span class="s4">; </span><span class="s1">r2</span><span class="s4">++) {</span>
+            <span class="s5">char </span><span class="s1">display_char</span><span class="s4">;</span>
+            <span class="s5">if </span><span class="s4">(</span><span class="s1">grid</span><span class="s4">.</span><span class="s1">isSquareEmpty</span><span class="s4">(</span><span class="s1">r1</span><span class="s4">, </span><span class="s1">r2</span><span class="s4">)) {</span>
+                <span class="s0">//if square is empty - display number. Used for selection later</span>
+                <span class="s1">display_char </span><span class="s4">= </span><span class="s1">position_char</span><span class="s4">;</span>
+            <span class="s4">} </span><span class="s5">else </span><span class="s4">{</span>
+                <span class="s0">//If marked, get the mark and convert it to an 'X' or 'O'</span>
+                <span class="s1">display_char </span><span class="s4">= </span><span class="s1">markToChar</span><span class="s4">(</span><span class="s1">grid</span><span class="s4">.</span><span class="s1">getMarkInGrid</span><span class="s4">(</span><span class="s1">r1</span><span class="s4">, </span><span class="s1">r2</span><span class="s4">));</span>
+            <span class="s4">}</span>
+            <span class="s1">cout</span><span class="s4">&lt;&lt; </span><span class="s3">&quot; &quot;</span><span class="s4">&lt;&lt;</span><span class="s1">display_char</span><span class="s4">&lt;&lt; </span><span class="s3">&quot; &quot;</span><span class="s4">; </span><span class="s0">//review this output</span>
+
+            <span class="s5">if</span><span class="s4">(</span><span class="s1">r2</span><span class="s4">&lt;</span><span class="s6">2</span><span class="s4">) {</span>
+                <span class="s1">cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;|&quot;</span><span class="s4">; </span><span class="s0">//Developing a vertical line</span>
+            <span class="s4">}</span>
+            <span class="s1">position_char</span><span class="s4">++;</span>
+        <span class="s4">}</span>
+        <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+        <span class="s5">if </span><span class="s4">(</span><span class="s1">r1 </span><span class="s4">&lt;</span><span class="s6">2</span><span class="s4">) {</span>
+            <span class="s1">cout</span><span class="s4">&lt;&lt; </span><span class="s3">&quot;---+---+---</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">; </span><span class="s0">//Developing a horizontal line</span>
+        <span class="s4">}</span>
+    <span class="s4">}</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+<span class="s4">}</span>
+<span class="s0">//============Display Methods for Messages ==================</span>
+
+<span class="s5">void </span><span class="s1">GridView::displayWelcomeMessage</span><span class="s4">() </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;================================</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;      Welcome to TicTacToe </span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;================================</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s5">void </span><span class="s1">GridView::displayWinner</span><span class="s4">(</span><span class="s1">Mark winnerMark</span><span class="s4">, </span><span class="s5">const </span><span class="s1">string </span><span class="s4">&amp;</span><span class="s1">winningRow</span><span class="s4">) </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;********************************</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt; </span><span class="s3">&quot;  Congratulations Player &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">markToChar</span><span class="s4">(</span><span class="s1">winnerMark</span><span class="s4">) &lt;&lt; </span><span class="s3">&quot; wins!</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt; </span><span class="s3">&quot;     On row: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">winningRow </span><span class="s4">&lt;&lt; </span><span class="s1">endl</span><span class="s4">;</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;********************************</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s5">void </span><span class="s1">GridView::displayCatsGame</span><span class="s4">() </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;********************************</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;       It's a cat's game!</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;********************************</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+<span class="s4">}</span>
+<span class="s5">void </span><span class="s1">GridView::displayGameOver</span><span class="s4">() </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt; </span><span class="s3">&quot;Game Over</span><span class="s5">\n</span><span class="s3">&quot;</span><span class="s4">;</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;Thanks for playing&quot;</span><span class="s4">&lt;&lt;</span><span class="s1">endl</span><span class="s4">;</span>
+<span class="s4">}</span>
+<span class="s5">void </span><span class="s1">GridView::displayInvalidMoveMessage</span><span class="s4">(</span><span class="s5">const </span><span class="s1">string </span><span class="s4">&amp;</span><span class="s1">row</span><span class="s4">) </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot; -----&gt; Invalid Move/Input: &quot; </span><span class="s4">&lt;&lt;</span><span class="s1">row</span><span class="s4">;</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;</span><span class="s5">\n </span><span class="s3">Please try again.&quot;</span><span class="s4">;</span>
+<span class="s4">}</span>
+<span class="s5">void </span><span class="s1">GridView::playerTurnprompt</span><span class="s4">(</span><span class="s1">Mark playerMark</span><span class="s4">) </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;Player (&quot; </span><span class="s4">&lt;&lt;</span><span class="s1">markToChar</span><span class="s4">(</span><span class="s1">playerMark</span><span class="s4">)&lt;&lt; </span><span class="s3">&quot;) enter your move (1 - 9): &quot; </span><span class="s4">&lt;&lt;</span><span class="s1">endl</span><span class="s4">;</span>
+    <span class="s4">}</span>
+<span class="s5">void </span><span class="s1">GridView::playAgain</span><span class="s4">() </span><span class="s5">const </span><span class="s4">{</span>
+    <span class="s1">cout</span><span class="s4">&lt;&lt;</span><span class="s3">&quot;</span><span class="s5">\n</span><span class="s3">Play again? Enter (yes/no): &quot;</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+</pre>
+</body>
+</html>

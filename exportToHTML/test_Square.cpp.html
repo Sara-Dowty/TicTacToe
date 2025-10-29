@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>test_Square.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #bcbec4;}
+.s5 { color: #2aacb8;}
+.s6 { color: #cf8e6d;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+test_Square.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/2/2025.</span>
+<span class="s0">//</span>
+
+<span class="s0">// File: test_Square.cpp</span>
+<span class="s2">#include </span><span class="s3">&quot;test_Square.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&lt;iostream&gt;     </span><span class="s0">// For std::cout</span>
+<span class="s2">#include </span><span class="s3">&lt;stdexcept&gt;    </span><span class="s0">// For std::runtime_error</span>
+
+<span class="s0">// Constructor</span>
+<span class="s1">TestSquare::TestSquare</span><span class="s4">() </span><span class="s1">: testsPassedCount</span><span class="s4">(</span><span class="s5">0</span><span class="s4">), </span><span class="s1">testsFailedCount</span><span class="s4">(</span><span class="s5">0</span><span class="s4">) {}</span>
+
+<span class="s0">// Helper to report test results</span>
+<span class="s6">void </span><span class="s1">TestSquare::reportTestResult</span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::string</span><span class="s4">&amp; </span><span class="s1">testName</span><span class="s4">, </span><span class="s6">bool </span><span class="s1">passed</span><span class="s4">, </span><span class="s6">const </span><span class="s1">std::string</span><span class="s4">&amp; </span><span class="s1">message</span><span class="s4">) {</span>
+    <span class="s6">if </span><span class="s4">(</span><span class="s1">passed</span><span class="s4">) {</span>
+        <span class="s1">testsPassedCount</span><span class="s4">++;</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;[PASS] &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">testName </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+        <span class="s1">testsFailedCount</span><span class="s4">++;</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;[FAIL] &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">testName</span><span class="s4">;</span>
+        <span class="s6">if </span><span class="s4">(!</span><span class="s1">message</span><span class="s4">.</span><span class="s1">empty</span><span class="s4">()) {</span>
+            <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot; - Details: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">message</span><span class="s4">;</span>
+        <span class="s4">}</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s4">}</span>
+<span class="s4">}</span>
+
+<span class="s0">// --- Test Case Implementations ---</span>
+
+<span class="s6">bool </span><span class="s1">TestSquare::checkConstructorInitializesEmpty</span><span class="s4">() {</span>
+    <span class="s1">std::string testName </span><span class="s4">= </span><span class="s3">&quot;Square.Constructor.InitializesEmpty&quot;</span><span class="s4">;</span>
+    <span class="s6">bool </span><span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s1">std::string failureMessage </span><span class="s4">= </span><span class="s3">&quot;&quot;</span><span class="s4">;</span>
+
+    <span class="s6">try </span><span class="s4">{</span>
+        <span class="s1">Square s</span><span class="s4">;</span>
+        <span class="s6">if </span><span class="s4">(</span><span class="s1">s</span><span class="s4">.</span><span class="s1">is_empty</span><span class="s4">()) {</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">true</span><span class="s4">;</span>
+        <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+            <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;Square should be empty upon construction (is_empty() returned false).&quot;</span><span class="s4">;</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::exception</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unexpected exception occurred: &quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">());</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s1">...</span><span class="s4">) {</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unknown unexpected exception occurred.&quot;</span><span class="s4">;</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">}</span>
+
+    <span class="s1">reportTestResult</span><span class="s4">(</span><span class="s1">testName</span><span class="s4">, </span><span class="s1">passed</span><span class="s4">, </span><span class="s1">failureMessage</span><span class="s4">);</span>
+    <span class="s6">return </span><span class="s1">passed</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s6">bool </span><span class="s1">TestSquare::checkGetMarkOnEmptyThrowsException</span><span class="s4">() {</span>
+    <span class="s1">std::string testName </span><span class="s4">= </span><span class="s3">&quot;Square.GetMark.ThrowsOnEmpty&quot;</span><span class="s4">;</span>
+    <span class="s6">bool </span><span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s1">std::string failureMessage </span><span class="s4">= </span><span class="s3">&quot;&quot;</span><span class="s4">;</span>
+    <span class="s1">Square s</span><span class="s4">; </span><span class="s0">// A new square is empty</span>
+
+    <span class="s6">try </span><span class="s4">{</span>
+        <span class="s1">s</span><span class="s4">.</span><span class="s1">get_mark</span><span class="s4">(); </span><span class="s0">// This line should throw std::runtime_error</span>
+        <span class="s0">// If we reach here, the exception was NOT thrown, which is a failure for this test.</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;Expected std::runtime_error was not thrown when calling get_mark() on an empty square.&quot;</span><span class="s4">;</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::runtime_error</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s0">// Exception was thrown, now check if it's the correct one (optional, but good)</span>
+        <span class="s6">if </span><span class="s4">(</span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">()) == </span><span class="s3">&quot;Square is empty&quot;</span><span class="s4">) {</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">true</span><span class="s4">; </span><span class="s0">// Correct exception and message</span>
+        <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+            <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;std::runtime_error thrown, but with incorrect message: </span><span class="s6">\&quot;</span><span class="s3">&quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">()) + </span><span class="s3">&quot;</span><span class="s6">\&quot; </span><span class="s3">instead of </span><span class="s6">\&quot;</span><span class="s3">Square is empty</span><span class="s6">\&quot;</span><span class="s3">.&quot;</span><span class="s4">;</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::exception</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unexpected different type of exception occurred: &quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">());</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s1">...</span><span class="s4">) {</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unknown unexpected non-std::runtime_error exception occurred.&quot;</span><span class="s4">;</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">}</span>
+
+    <span class="s1">reportTestResult</span><span class="s4">(</span><span class="s1">testName</span><span class="s4">, </span><span class="s1">passed</span><span class="s4">, </span><span class="s1">failureMessage</span><span class="s4">);</span>
+    <span class="s6">return </span><span class="s1">passed</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s6">bool </span><span class="s1">TestSquare::checkSetMarkOnEmptyWorks</span><span class="s4">() {</span>
+    <span class="s1">std::string testName </span><span class="s4">= </span><span class="s3">&quot;Square.SetMark.OnEmptySquareWorks&quot;</span><span class="s4">;</span>
+    <span class="s6">bool </span><span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s1">std::string failureMessage </span><span class="s4">= </span><span class="s3">&quot;&quot;</span><span class="s4">;</span>
+    <span class="s1">Square s</span><span class="s4">; </span><span class="s0">// New square, is_empty() == true</span>
+
+    <span class="s6">try </span><span class="s4">{</span>
+        <span class="s1">s</span><span class="s4">.</span><span class="s1">set_mark</span><span class="s4">(</span><span class="s1">Mark::X</span><span class="s4">); </span><span class="s0">// Should successfully mark the square</span>
+        <span class="s6">if </span><span class="s4">(</span><span class="s1">s</span><span class="s4">.</span><span class="s1">is_empty</span><span class="s4">()) {</span>
+            <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;is_empty() returned true after set_mark on an empty square.&quot;</span><span class="s4">;</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+        <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+            <span class="s0">// Now try to get the mark</span>
+            <span class="s6">if </span><span class="s4">(</span><span class="s1">s</span><span class="s4">.</span><span class="s1">get_mark</span><span class="s4">() == </span><span class="s1">Mark::X</span><span class="s4">) {</span>
+                <span class="s1">passed </span><span class="s4">= </span><span class="s6">true</span><span class="s4">; </span><span class="s0">// Mark is correct and is_empty() is false</span>
+            <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+                <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;get_mark() did not return the correct Mark after set_mark.&quot;</span><span class="s4">;</span>
+                <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+            <span class="s4">}</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::exception</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unexpected exception occurred: &quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">());</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s1">...</span><span class="s4">) {</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unknown unexpected exception occurred.&quot;</span><span class="s4">;</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">}</span>
+
+    <span class="s1">reportTestResult</span><span class="s4">(</span><span class="s1">testName</span><span class="s4">, </span><span class="s1">passed</span><span class="s4">, </span><span class="s1">failureMessage</span><span class="s4">);</span>
+    <span class="s6">return </span><span class="s1">passed</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s6">bool </span><span class="s1">TestSquare::checkSetMarkOnMarkedSquareThrows</span><span class="s4">() {</span>
+    <span class="s1">std::string testName </span><span class="s4">= </span><span class="s3">&quot;Square.SetMark.OnMarkedSquareThrows&quot;</span><span class="s4">;</span>
+    <span class="s6">bool </span><span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s1">std::string failureMessage </span><span class="s4">= </span><span class="s3">&quot;&quot;</span><span class="s4">;</span>
+    <span class="s1">Square s</span><span class="s4">;</span>
+
+    <span class="s6">try </span><span class="s4">{</span>
+        <span class="s1">s</span><span class="s4">.</span><span class="s1">set_mark</span><span class="s4">(</span><span class="s1">Mark::X</span><span class="s4">); </span><span class="s0">// First mark, should succeed</span>
+        <span class="s0">// Now, s is no longer empty. Try to mark it again.</span>
+        <span class="s1">s</span><span class="s4">.</span><span class="s1">set_mark</span><span class="s4">(</span><span class="s1">Mark::O</span><span class="s4">); </span><span class="s0">// This should throw std::runtime_error</span>
+        <span class="s0">// If we reach here, the exception was NOT thrown.</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;Expected std::runtime_error was not thrown when calling set_mark() on an already marked square.&quot;</span><span class="s4">;</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::runtime_error</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s6">if </span><span class="s4">(</span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">()) == </span><span class="s3">&quot;Square is already marked.&quot;</span><span class="s4">) {</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">true</span><span class="s4">; </span><span class="s0">// Correct exception and message</span>
+        <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+            <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;std::runtime_error thrown, but with incorrect message: </span><span class="s6">\&quot;</span><span class="s3">&quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">()) + </span><span class="s3">&quot;</span><span class="s6">\&quot;</span><span class="s3">.&quot;</span><span class="s4">;</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::exception</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unexpected different type of exception occurred: &quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">());</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s1">...</span><span class="s4">) {</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unknown unexpected non-std::runtime_error exception occurred.&quot;</span><span class="s4">;</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s4">}</span>
+
+    <span class="s1">reportTestResult</span><span class="s4">(</span><span class="s1">testName</span><span class="s4">, </span><span class="s1">passed</span><span class="s4">, </span><span class="s1">failureMessage</span><span class="s4">);</span>
+    <span class="s6">return </span><span class="s1">passed</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s0">// --- Test Runner Implementation ---</span>
+
+<span class="s6">void </span><span class="s1">TestSquare::runAllTests</span><span class="s4">() {</span>
+    <span class="s0">// Reset counters for a fresh run</span>
+    <span class="s1">testsPassedCount </span><span class="s4">= </span><span class="s5">0</span><span class="s4">;</span>
+    <span class="s1">testsFailedCount </span><span class="s4">= </span><span class="s5">0</span><span class="s4">;</span>
+
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;</span><span class="s6">\n</span><span class="s3">--- Running Square Class Tests ---&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+
+    <span class="s1">checkConstructorInitializesEmpty</span><span class="s4">();</span>
+    <span class="s1">checkGetMarkOnEmptyThrowsException</span><span class="s4">();</span>
+
+    <span class="s1">checkSetMarkOnEmptyWorks</span><span class="s4">();</span>
+    <span class="s1">checkSetMarkOnMarkedSquareThrows</span><span class="s4">();</span>
+
+
+    <span class="s0">// If you add more test methods, call them here.</span>
+    <span class="s0">// e.g., if Square logic changes to allow setting marks:</span>
+    <span class="s0">// checkSetMarkMakesSquareNonEmpty();</span>
+    <span class="s0">// checkGetMarkReturnsCorrectMark();</span>
+
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;</span><span class="s6">\n</span><span class="s3">--- Test Summary ---&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;Total tests run: &quot; </span><span class="s4">&lt;&lt; (</span><span class="s1">testsPassedCount </span><span class="s4">+ </span><span class="s1">testsFailedCount</span><span class="s4">) &lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;Tests Passed: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">testsPassedCount </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;Tests Failed: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">testsFailedCount </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;--------------------</span><span class="s6">\n</span><span class="s3">&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+
+    <span class="s6">if </span><span class="s4">(</span><span class="s1">testsFailedCount </span><span class="s4">&gt; </span><span class="s5">0</span><span class="s4">) {</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;At least one test FAILED.&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">else if </span><span class="s4">((</span><span class="s1">testsPassedCount </span><span class="s4">+ </span><span class="s1">testsFailedCount</span><span class="s4">) == </span><span class="s5">0</span><span class="s4">) {</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;No tests were run.&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s4">}</span>
+     <span class="s6">else </span><span class="s4">{</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;All tests PASSED!&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s4">}</span>
+<span class="s4">}</span></pre>
+</body>
+</html>

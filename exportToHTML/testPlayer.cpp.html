@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>testPlayer.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #bcbec4;}
+.s5 { color: #2aacb8;}
+.s6 { color: #cf8e6d;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+testPlayer.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/10/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;testPlayer.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;Player.h&quot; </span><span class="s0">// Include the full definition of the Player class</span>
+<span class="s2">#include </span><span class="s3">&quot;Mark.h&quot;   </span><span class="s0">// For Mark::X and Mark::O</span>
+<span class="s2">#include </span><span class="s3">&lt;iostream&gt;</span>
+
+<span class="s1">TestPlayer::TestPlayer</span><span class="s4">() </span><span class="s1">: testsPassedCount</span><span class="s4">(</span><span class="s5">0</span><span class="s4">), </span><span class="s1">testsFailedCount</span><span class="s4">(</span><span class="s5">0</span><span class="s4">) {}</span>
+
+<span class="s6">void </span><span class="s1">TestPlayer::reportTestResult</span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::string</span><span class="s4">&amp; </span><span class="s1">testName</span><span class="s4">, </span><span class="s6">bool </span><span class="s1">passed</span><span class="s4">, </span><span class="s6">const </span><span class="s1">std::string</span><span class="s4">&amp; </span><span class="s1">message</span><span class="s4">) {</span>
+    <span class="s6">if </span><span class="s4">(</span><span class="s1">passed</span><span class="s4">) {</span>
+        <span class="s1">testsPassedCount</span><span class="s4">++;</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;[PASS] &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">testName </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+        <span class="s1">testsFailedCount</span><span class="s4">++;</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;[FAIL] &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">testName</span><span class="s4">;</span>
+        <span class="s6">if </span><span class="s4">(!</span><span class="s1">message</span><span class="s4">.</span><span class="s1">empty</span><span class="s4">()) {</span>
+            <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot; - Details: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">message</span><span class="s4">;</span>
+        <span class="s4">}</span>
+        <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s4">}</span>
+<span class="s4">}</span>
+
+<span class="s0">// --- Test Case Implementations ---</span>
+
+<span class="s6">bool </span><span class="s1">TestPlayer::testAssignAndGetMark_AssignsX</span><span class="s4">() {</span>
+    <span class="s1">std::string testName </span><span class="s4">= </span><span class="s3">&quot;Player.AssignAndGet.AssignsX&quot;</span><span class="s4">;</span>
+    <span class="s6">bool </span><span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s1">std::string failureMessage </span><span class="s4">= </span><span class="s3">&quot;&quot;</span><span class="s4">;</span>
+
+    <span class="s6">try </span><span class="s4">{</span>
+        <span class="s1">Player p</span><span class="s4">;</span>
+        <span class="s1">p</span><span class="s4">.</span><span class="s1">assignMark</span><span class="s4">(</span><span class="s1">Mark::X</span><span class="s4">);</span>
+        <span class="s1">Mark result </span><span class="s4">= </span><span class="s1">p</span><span class="s4">.</span><span class="s1">getMark</span><span class="s4">();</span>
+
+        <span class="s6">if </span><span class="s4">(</span><span class="s1">result </span><span class="s4">== </span><span class="s1">Mark::X</span><span class="s4">) {</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">true</span><span class="s4">;</span>
+        <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+            <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;getMark() did not return Mark::X after assignMark(Mark::X) was called.&quot;</span><span class="s4">;</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::exception</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unexpected exception occurred: &quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">());</span>
+    <span class="s4">}</span>
+
+    <span class="s1">reportTestResult</span><span class="s4">(</span><span class="s1">testName</span><span class="s4">, </span><span class="s1">passed</span><span class="s4">, </span><span class="s1">failureMessage</span><span class="s4">);</span>
+    <span class="s6">return </span><span class="s1">passed</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s6">bool </span><span class="s1">TestPlayer::testAssignAndGetMark_AssignsO</span><span class="s4">() {</span>
+    <span class="s1">std::string testName </span><span class="s4">= </span><span class="s3">&quot;Player.AssignAndGet.AssignsO&quot;</span><span class="s4">;</span>
+    <span class="s6">bool </span><span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s1">std::string failureMessage </span><span class="s4">= </span><span class="s3">&quot;&quot;</span><span class="s4">;</span>
+
+    <span class="s6">try </span><span class="s4">{</span>
+        <span class="s1">Player p</span><span class="s4">;</span>
+        <span class="s1">p</span><span class="s4">.</span><span class="s1">assignMark</span><span class="s4">(</span><span class="s1">Mark::O</span><span class="s4">);</span>
+        <span class="s1">Mark result </span><span class="s4">= </span><span class="s1">p</span><span class="s4">.</span><span class="s1">getMark</span><span class="s4">();</span>
+
+        <span class="s6">if </span><span class="s4">(</span><span class="s1">result </span><span class="s4">== </span><span class="s1">Mark::O</span><span class="s4">) {</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">true</span><span class="s4">;</span>
+        <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+            <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;getMark() did not return Mark::O after assignMark(Mark::O) was called.&quot;</span><span class="s4">;</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::exception</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unexpected exception occurred: &quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">());</span>
+    <span class="s4">}</span>
+
+    <span class="s1">reportTestResult</span><span class="s4">(</span><span class="s1">testName</span><span class="s4">, </span><span class="s1">passed</span><span class="s4">, </span><span class="s1">failureMessage</span><span class="s4">);</span>
+    <span class="s6">return </span><span class="s1">passed</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+<span class="s6">bool </span><span class="s1">TestPlayer::testReassignMark_CanChangeMark</span><span class="s4">() {</span>
+    <span class="s1">std::string testName </span><span class="s4">= </span><span class="s3">&quot;Player.AssignAndGet.ReassignsMark&quot;</span><span class="s4">;</span>
+    <span class="s6">bool </span><span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+    <span class="s1">std::string failureMessage </span><span class="s4">= </span><span class="s3">&quot;&quot;</span><span class="s4">;</span>
+
+    <span class="s6">try </span><span class="s4">{</span>
+        <span class="s1">Player p</span><span class="s4">;</span>
+        <span class="s1">p</span><span class="s4">.</span><span class="s1">assignMark</span><span class="s4">(</span><span class="s1">Mark::X</span><span class="s4">); </span><span class="s0">// First assignment</span>
+        <span class="s1">p</span><span class="s4">.</span><span class="s1">assignMark</span><span class="s4">(</span><span class="s1">Mark::O</span><span class="s4">); </span><span class="s0">// Second assignment should overwrite</span>
+        <span class="s1">Mark result </span><span class="s4">= </span><span class="s1">p</span><span class="s4">.</span><span class="s1">getMark</span><span class="s4">();</span>
+
+        <span class="s6">if </span><span class="s4">(</span><span class="s1">result </span><span class="s4">== </span><span class="s1">Mark::O</span><span class="s4">) {</span>
+            <span class="s1">passed </span><span class="s4">= </span><span class="s6">true</span><span class="s4">;</span>
+        <span class="s4">} </span><span class="s6">else </span><span class="s4">{</span>
+            <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;getMark() did not return Mark::O after re-assigning the mark.&quot;</span><span class="s4">;</span>
+        <span class="s4">}</span>
+    <span class="s4">} </span><span class="s6">catch </span><span class="s4">(</span><span class="s6">const </span><span class="s1">std::exception</span><span class="s4">&amp; </span><span class="s1">e</span><span class="s4">) {</span>
+        <span class="s1">passed </span><span class="s4">= </span><span class="s6">false</span><span class="s4">;</span>
+        <span class="s1">failureMessage </span><span class="s4">= </span><span class="s3">&quot;An unexpected exception occurred: &quot; </span><span class="s4">+ </span><span class="s1">std::string</span><span class="s4">(</span><span class="s1">e</span><span class="s4">.</span><span class="s1">what</span><span class="s4">());</span>
+    <span class="s4">}</span>
+
+    <span class="s1">reportTestResult</span><span class="s4">(</span><span class="s1">testName</span><span class="s4">, </span><span class="s1">passed</span><span class="s4">, </span><span class="s1">failureMessage</span><span class="s4">);</span>
+    <span class="s6">return </span><span class="s1">passed</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+
+<span class="s0">// --- Test Runner Method ---</span>
+<span class="s6">void </span><span class="s1">TestPlayer::runAllTests</span><span class="s4">() {</span>
+    <span class="s1">testsPassedCount </span><span class="s4">= </span><span class="s5">0</span><span class="s4">;</span>
+    <span class="s1">testsFailedCount </span><span class="s4">= </span><span class="s5">0</span><span class="s4">;</span>
+
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;</span><span class="s6">\n</span><span class="s3">--- Running Player Class Tests ---&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+
+    <span class="s1">testAssignAndGetMark_AssignsX</span><span class="s4">();</span>
+    <span class="s1">testAssignAndGetMark_AssignsO</span><span class="s4">();</span>
+    <span class="s1">testReassignMark_CanChangeMark</span><span class="s4">();</span>
+
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;</span><span class="s6">\n</span><span class="s3">--- Player Test Summary ---&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s6">unsigned int </span><span class="s1">totalTests </span><span class="s4">= </span><span class="s1">testsPassedCount </span><span class="s4">+ </span><span class="s1">testsFailedCount</span><span class="s4">;</span>
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;Total tests run: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">totalTests </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;Tests Passed: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">testsPassedCount </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;Tests Failed: &quot; </span><span class="s4">&lt;&lt; </span><span class="s1">testsFailedCount </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+    <span class="s1">std::cout </span><span class="s4">&lt;&lt; </span><span class="s3">&quot;-------------------------</span><span class="s6">\n</span><span class="s3">&quot; </span><span class="s4">&lt;&lt; </span><span class="s1">std::endl</span><span class="s4">;</span>
+<span class="s4">}</span></pre>
+</body>
+</html>

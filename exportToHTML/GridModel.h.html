@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>GridModel.h</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+GridModel.h</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/10/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#ifndef </span><span class="s1">GRIDMODEL_H</span>
+<span class="s2">#define </span><span class="s1">GRIDMODEL_H</span>
+<span class="s2">#include </span><span class="s3">&quot;Grid.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;Mark.h&quot;</span>
+<span class="s2">#include</span><span class="s3">&lt;map&gt;</span>
+<span class="s2">#include</span><span class="s3">&lt;vector&gt;</span>
+<span class="s2">#include</span><span class="s3">&lt;string&gt; </span><span class="s0">//future naming?</span>
+
+
+<span class="s4">class </span><span class="s1">GridModel </span><span class="s5">{</span>
+<span class="s4">public</span><span class="s1">:</span>
+    <span class="s1">GridModel</span><span class="s5">();</span>
+    <span class="s4">const </span><span class="s1">Grid</span><span class="s5">&amp; </span><span class="s1">getGrid</span><span class="s5">() </span><span class="s4">const</span><span class="s5">;</span>
+
+    <span class="s0">//---Using names</span>
+    <span class="s4">bool </span><span class="s1">hasMark</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">squareName</span><span class="s5">, </span><span class="s1">Mark mark</span><span class="s5">);</span>
+    <span class="s5">[[</span><span class="s1">nodiscard</span><span class="s5">]] </span><span class="s4">bool </span><span class="s1">isSquareEmpty</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">squareName</span><span class="s5">) </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s5">[[</span><span class="s1">nodiscard</span><span class="s5">]] </span><span class="s1">Mark getMarkInGrid</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">squareName</span><span class="s5">) </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s0">//---Game Information</span>
+    <span class="s4">bool </span><span class="s1">reset</span><span class="s5">();</span>
+    <span class="s4">bool </span><span class="s1">isGridWin</span><span class="s5">(</span><span class="s1">Mark</span><span class="s5">&amp; </span><span class="s1">mark</span><span class="s5">, </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">winningRow</span><span class="s5">); </span><span class="s0">//check full grid for wi</span>
+    <span class="s4">bool </span><span class="s1">isFull</span><span class="s5">() </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s0">//ACCESSORS - FOR UI/VIEW LATER</span>
+    <span class="s5">[[</span><span class="s1">nodiscard</span><span class="s5">]] </span><span class="s1">vector</span><span class="s5">&lt;</span><span class="s1">string</span><span class="s5">&gt; </span><span class="s1">getALLSquareNames</span><span class="s5">() </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s0">//[[nodiscard]] vector&lt;string&gt; getAllRowNames() const; //previous version</span>
+    <span class="s5">[[</span><span class="s1">nodiscard</span><span class="s5">]] </span><span class="s4">const </span><span class="s1">vector</span><span class="s5">&lt;</span><span class="s1">Square</span><span class="s5">*&gt;&amp; </span><span class="s1">getSquaresInRow</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">rowName</span><span class="s5">) </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s4">const </span><span class="s1">Grid</span><span class="s5">&amp; </span><span class="s1">getGridModel</span><span class="s5">();</span>
+<span class="s4">private</span><span class="s1">:</span>
+    <span class="s1">Grid grid_data</span><span class="s5">;</span>
+    <span class="s0">//---Name</span>
+    <span class="s1">map</span><span class="s5">&lt;</span><span class="s1">string</span><span class="s5">, </span><span class="s1">Square</span><span class="s5">*&gt; </span><span class="s1">square_map</span><span class="s5">;</span>
+    <span class="s1">map</span><span class="s5">&lt;</span><span class="s1">string</span><span class="s5">, </span><span class="s1">vector</span><span class="s5">&lt;</span><span class="s1">Square</span><span class="s5">*&gt;&gt; </span><span class="s1">row_map</span><span class="s5">;</span>
+    <span class="s0">//internal methods</span>
+    <span class="s4">void </span><span class="s1">initializeMaps</span><span class="s5">(); </span><span class="s0">//called by constructor &amp; reset()</span>
+    <span class="s4">static </span><span class="s1">string rowToSquareName</span><span class="s5">(</span><span class="s4">int </span><span class="s1">row</span><span class="s5">, </span><span class="s4">int </span><span class="s1">row2</span><span class="s5">) ;</span>
+<span class="s5">};</span>
+
+
+
+<span class="s2">#endif </span><span class="s0">//GRIDMODEL_H</span>
+</pre>
+</body>
+</html>

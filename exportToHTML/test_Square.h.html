@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>test_Square.h</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+test_Square.h</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/2/2025.</span>
+<span class="s0">//</span>
+
+<span class="s0">// File: test_Square.h</span>
+<span class="s2">#ifndef </span><span class="s1">TEST_SQUARE_H</span>
+<span class="s2">#define </span><span class="s1">TEST_SQUARE_H</span>
+
+<span class="s2">#include </span><span class="s3">&quot;Square.h&quot; </span><span class="s0">// Your Square class</span>
+<span class="s2">#include </span><span class="s3">&quot;Mark.h&quot;   </span><span class="s0">// The Mark enum</span>
+<span class="s2">#include </span><span class="s3">&lt;string&gt;   </span><span class="s0">// For test names and messages</span>
+<span class="s2">#include </span><span class="s3">&lt;vector&gt;   </span><span class="s0">// Potentially for collecting messages</span>
+
+<span class="s4">class </span><span class="s1">TestSquare </span><span class="s5">{</span>
+<span class="s4">public</span><span class="s1">:</span>
+    <span class="s1">TestSquare</span><span class="s5">(); </span><span class="s0">// Constructor to initialize counters</span>
+
+    <span class="s0">// --- Individual Test Case Methods ---</span>
+    <span class="s0">// Each method will test a specific functionality.</span>
+    <span class="s0">// They return true if the test passes, false otherwise.</span>
+    <span class="s4">bool </span><span class="s1">checkConstructorInitializesEmpty</span><span class="s5">();</span>
+    <span class="s4">bool </span><span class="s1">checkGetMarkOnEmptyThrowsException</span><span class="s5">();</span>
+
+    <span class="s4">bool </span><span class="s1">checkSetMarkOnEmptyWorks</span><span class="s5">();</span>
+    <span class="s4">bool </span><span class="s1">checkSetMarkOnMarkedSquareThrows</span><span class="s5">();</span>
+    <span class="s0">// ...</span>
+
+    <span class="s0">// --- Test Runner Method ---</span>
+    <span class="s0">// This method will call all individual test case methods and summarize results.</span>
+    <span class="s4">void </span><span class="s1">runAllTests</span><span class="s5">();</span>
+
+<span class="s4">private</span><span class="s1">:</span>
+    <span class="s0">// Helper method to report the result of a single test</span>
+    <span class="s4">void </span><span class="s1">reportTestResult</span><span class="s5">(</span><span class="s4">const </span><span class="s1">std::string</span><span class="s5">&amp; </span><span class="s1">testName</span><span class="s5">, </span><span class="s4">bool </span><span class="s1">passed</span><span class="s5">, </span><span class="s4">const </span><span class="s1">std::string</span><span class="s5">&amp; </span><span class="s1">message </span><span class="s5">= </span><span class="s3">&quot;&quot;</span><span class="s5">);</span>
+
+    <span class="s0">// Counters for test results</span>
+    <span class="s4">unsigned int </span><span class="s1">testsPassedCount</span><span class="s5">;</span>
+    <span class="s4">unsigned int </span><span class="s1">testsFailedCount</span><span class="s5">;</span>
+
+    <span class="s0">// --- Hypothetical Test Methods (if Square logic changes) ---</span>
+    <span class="s0">// bool checkSetMarkMakesSquareNonEmpty();</span>
+    <span class="s0">// bool checkGetMarkReturnsCorrectMark();</span>
+<span class="s5">};</span>
+
+<span class="s2">#endif </span><span class="s0">//TEST_SQUARE_H</span></pre>
+</body>
+</html>

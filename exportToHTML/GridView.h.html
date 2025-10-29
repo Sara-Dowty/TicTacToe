@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>GridView.h</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+GridView.h</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/10/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#ifndef </span><span class="s1">GRIDVIEW_H</span>
+<span class="s2">#define </span><span class="s1">GRIDVIEW_H</span>
+
+<span class="s2">#include </span><span class="s3">&quot;GridModel.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;Mark.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&lt;string&gt;</span>
+
+<span class="s4">using namespace </span><span class="s1">std</span><span class="s5">;</span>
+
+<span class="s4">class </span><span class="s1">GridView </span><span class="s5">{</span>
+<span class="s4">public</span><span class="s1">:</span>
+    <span class="s0">//Constructor taking in a constant reference to the grid model. Reading only.</span>
+    <span class="s1">GridView</span><span class="s5">(</span><span class="s4">const </span><span class="s1">GridModel</span><span class="s5">&amp; </span><span class="s1">grid_model</span><span class="s5">);</span>
+
+    <span class="s0">//Displays the current state of TicTacToe</span>
+    <span class="s4">void </span><span class="s1">displayGrid</span><span class="s5">() </span><span class="s4">const</span><span class="s5">;</span>
+
+    <span class="s0">//Display methods for the game controller to call</span>
+    <span class="s4">void </span><span class="s1">displayWelcomeMessage</span><span class="s5">() </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s4">void </span><span class="s1">displayWinner</span><span class="s5">(</span><span class="s1">Mark winnerMark</span><span class="s5">, </span><span class="s4">const </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">winningRow</span><span class="s5">) </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s4">void </span><span class="s1">displayCatsGame</span><span class="s5">() </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s4">void </span><span class="s1">displayInvalidMoveMessage</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">winningRow</span><span class="s5">) </span><span class="s4">const</span><span class="s5">;</span>
+    <span class="s4">void </span><span class="s1">playerTurnprompt</span><span class="s5">(</span><span class="s1">Mark playerMark</span><span class="s5">) </span><span class="s4">const</span><span class="s5">;</span>
+
+    <span class="s4">void </span><span class="s1">playAgain</span><span class="s5">() </span><span class="s4">const</span><span class="s5">;</span>
+
+    <span class="s4">void </span><span class="s1">displayGameOver</span><span class="s5">() </span><span class="s4">const</span><span class="s5">;</span>
+
+<span class="s4">private</span><span class="s1">:</span>
+    <span class="s4">const </span><span class="s1">GridModel</span><span class="s5">&amp; </span><span class="s1">grid_model</span><span class="s5">; </span><span class="s0">//referencing the model</span>
+    <span class="s0">//function to switch Mark enum to char</span>
+    <span class="s4">char </span><span class="s1">markToChar</span><span class="s5">(</span><span class="s1">Mark mark</span><span class="s5">) </span><span class="s4">const</span><span class="s5">;</span>
+
+<span class="s5">};</span>
+
+
+
+<span class="s2">#endif </span><span class="s0">//GRIDVIEW_H</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>GridModel.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+.s6 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+GridModel.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/10/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;GridModel.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&lt;stdexcept&gt;</span>
+<span class="s2">#include </span><span class="s3">&lt;bits/streambuf_iterator.h&gt;</span>
+<span class="s4">using namespace </span><span class="s1">std</span><span class="s5">;</span>
+
+<span class="s1">GridModel::GridModel</span><span class="s5">() {</span>
+    <span class="s1">initializeMaps</span><span class="s5">();</span>
+<span class="s5">}</span>
+<span class="s4">const </span><span class="s1">Grid</span><span class="s5">&amp; </span><span class="s1">GridModel::getGrid</span><span class="s5">() </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">return this</span><span class="s5">-&gt;</span><span class="s1">grid_data</span><span class="s5">;</span>
+<span class="s5">}</span>
+<span class="s0">//Square Names &amp; Row Num accessor List</span>
+<span class="s1">string GridModel::rowToSquareName</span><span class="s5">(</span><span class="s4">int </span><span class="s1">row</span><span class="s5">, </span><span class="s4">int </span><span class="s1">row2</span><span class="s5">) {</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">row </span><span class="s5">== </span><span class="s6">0</span><span class="s5">) {</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">0</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;topLeftSquare&quot;</span><span class="s5">;};</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">1</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;topMiddleSquare&quot;</span><span class="s5">;};</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">2</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;topRightSquare&quot;</span><span class="s5">;};</span>
+    <span class="s5">} </span><span class="s4">else if </span><span class="s5">(</span><span class="s1">row </span><span class="s5">== </span><span class="s6">1</span><span class="s5">) {</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">0</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;middleLeftSquare&quot;</span><span class="s5">;};</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">1</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;center&quot;</span><span class="s5">;};</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">2</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;middleRightSquare&quot;</span><span class="s5">;};</span>
+    <span class="s5">} </span><span class="s4">else if </span><span class="s5">(</span><span class="s1">row </span><span class="s5">== </span><span class="s6">2</span><span class="s5">) {</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">0</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;bottomLeftSquare&quot;</span><span class="s5">;};</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">1</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;bottomMiddleSquare&quot;</span><span class="s5">;};</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">row2 </span><span class="s5">== </span><span class="s6">2</span><span class="s5">) {</span><span class="s4">return </span><span class="s3">&quot;bottomRightSquare&quot;</span><span class="s5">;};</span>
+    <span class="s5">}</span>
+    <span class="s4">throw</span><span class="s1">::out_of_range</span><span class="s5">(</span><span class="s3">&quot;Invalid location&quot;</span><span class="s5">);</span>
+<span class="s5">}</span>
+<span class="s4">void </span><span class="s1">GridModel::initializeMaps</span><span class="s5">() {</span>
+    <span class="s1">square_map</span><span class="s5">.</span><span class="s1">clear</span><span class="s5">();</span>
+    <span class="s1">row_map</span><span class="s5">.</span><span class="s1">clear</span><span class="s5">();</span>
+    <span class="s0">//Populate map from square names to square pointers</span>
+    <span class="s4">for </span><span class="s5">(</span><span class="s4">int </span><span class="s1">r1 </span><span class="s5">=</span><span class="s6">0</span><span class="s5">; </span><span class="s1">r1</span><span class="s5">&lt;</span><span class="s6">3</span><span class="s5">; </span><span class="s1">r1</span><span class="s5">++) {</span>
+        <span class="s4">for </span><span class="s5">(</span><span class="s4">int </span><span class="s1">r2 </span><span class="s5">=</span><span class="s6">0</span><span class="s5">; </span><span class="s1">r2</span><span class="s5">&lt;</span><span class="s6">3</span><span class="s5">; </span><span class="s1">r2</span><span class="s5">++) {</span>
+            <span class="s1">string name </span><span class="s5">= </span><span class="s1">rowToSquareName</span><span class="s5">(</span><span class="s1">r1</span><span class="s5">, </span><span class="s1">r2</span><span class="s5">);</span>
+            <span class="s1">square_map</span><span class="s5">[</span><span class="s1">name</span><span class="s5">] = </span><span class="s1">grid_data</span><span class="s5">.</span><span class="s1">getSquarePtr</span><span class="s5">(</span><span class="s1">r1</span><span class="s5">, </span><span class="s1">r2</span><span class="s5">);</span>
+        <span class="s5">}</span>
+    <span class="s5">} </span>
+    <span class="s0">//8 rows</span>
+    <span class="s0">//horizontal</span>
+    <span class="s1">row_map</span><span class="s5">[</span><span class="s3">&quot;topRow&quot;</span><span class="s5">] = {</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;topLeftSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;topMiddleSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;topRightSquare&quot;</span><span class="s5">) };</span>
+    <span class="s1">row_map</span><span class="s5">[</span><span class="s3">&quot;middleRow&quot;</span><span class="s5">] = {</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;middleLeftSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;center&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;middleRightSquare&quot;</span><span class="s5">) };</span>
+    <span class="s1">row_map</span><span class="s5">[</span><span class="s3">&quot;bottomRow&quot;</span><span class="s5">] = {</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;bottomLeftSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;bottomMiddleSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;bottomRightSquare&quot;</span><span class="s5">) };</span>
+    <span class="s0">// Vertical</span>
+    <span class="s1">row_map</span><span class="s5">[</span><span class="s3">&quot;leftRow&quot;</span><span class="s5">] = {</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;topLeftSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;middleLeftSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;bottomLeftSquare&quot;</span><span class="s5">) };</span>
+    <span class="s1">row_map</span><span class="s5">[</span><span class="s3">&quot;centerRow&quot;</span><span class="s5">] = {</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;topMiddleSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;center&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;bottomMiddleSquare&quot;</span><span class="s5">) };</span>
+    <span class="s1">row_map</span><span class="s5">[</span><span class="s3">&quot;rightRow&quot;</span><span class="s5">] = {</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;topRightSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;middleRightSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;bottomRightSquare&quot;</span><span class="s5">) };</span>
+    <span class="s0">// Diagonal</span>
+    <span class="s1">row_map</span><span class="s5">[</span><span class="s3">&quot;rightDiagonal&quot;</span><span class="s5">] = {</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;topLeftSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;center&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;bottomRightSquare&quot;</span><span class="s5">) };</span>
+    <span class="s1">row_map</span><span class="s5">[</span><span class="s3">&quot;leftDiagonal&quot;</span><span class="s5">] = {</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;bottomLeftSquare&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;center&quot;</span><span class="s5">),</span>
+        <span class="s1">square_map</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s3">&quot;topRightSquare&quot;</span><span class="s5">) };</span>
+<span class="s5">}</span>
+<span class="s0">//Using square position row numbers-keep?</span>
+<span class="s4">bool </span><span class="s1">GridModel:: hasMark</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">squareName</span><span class="s5">, </span><span class="s1">Mark mark</span><span class="s5">) {</span>
+    <span class="s4">auto </span><span class="s1">find </span><span class="s5">= </span><span class="s1">square_map</span><span class="s5">.</span><span class="s1">find</span><span class="s5">(</span><span class="s1">squareName</span><span class="s5">);</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">find </span><span class="s5">== </span><span class="s1">square_map</span><span class="s5">.</span><span class="s1">end</span><span class="s5">() || </span><span class="s1">find</span><span class="s5">-&gt;</span><span class="s1">second </span><span class="s5">== </span><span class="s4">nullptr</span><span class="s5">) {</span>
+        <span class="s4">return false</span><span class="s5">;</span>
+    <span class="s5">}</span>
+    <span class="s1">Square</span><span class="s5">* </span><span class="s1">square_ptr </span><span class="s5">= </span><span class="s1">find</span><span class="s5">-&gt;</span><span class="s1">second</span><span class="s5">;</span>
+    <span class="s4">try </span><span class="s5">{</span>
+        <span class="s1">square_ptr</span><span class="s5">-&gt;</span><span class="s1">set_mark</span><span class="s5">(</span><span class="s1">mark</span><span class="s5">);</span>
+        <span class="s4">return true</span><span class="s5">;</span>
+    <span class="s5">} </span><span class="s4">catch </span><span class="s5">(</span><span class="s4">const </span><span class="s1">runtime_error</span><span class="s5">&amp;) {</span>
+        <span class="s4">return false</span><span class="s5">; </span><span class="s0">//square already marked</span>
+    <span class="s5">}</span>
+<span class="s5">}</span>
+<span class="s4">bool </span><span class="s1">GridModel::isSquareEmpty</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string </span><span class="s5">&amp;</span><span class="s1">squareName</span><span class="s5">) </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">auto </span><span class="s1">find </span><span class="s5">= </span><span class="s1">square_map</span><span class="s5">.</span><span class="s1">find</span><span class="s5">(</span><span class="s1">squareName</span><span class="s5">);</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">find </span><span class="s5">== </span><span class="s1">square_map</span><span class="s5">.</span><span class="s1">end</span><span class="s5">() || </span><span class="s1">find</span><span class="s5">-&gt;</span><span class="s1">second </span><span class="s5">== </span><span class="s4">nullptr</span><span class="s5">) {</span>
+        <span class="s4">throw </span><span class="s1">runtime_error</span><span class="s5">(</span><span class="s3">&quot;Square does not exist. Invalid square name: &quot; </span><span class="s5">+ </span><span class="s1">squareName</span><span class="s5">);</span>
+    <span class="s5">}</span>
+    <span class="s4">return </span><span class="s1">find</span><span class="s5">-&gt;</span><span class="s1">second</span><span class="s5">-&gt;</span><span class="s1">is_empty</span><span class="s5">();</span>
+<span class="s5">}</span>
+<span class="s1">Mark GridModel::getMarkInGrid</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string </span><span class="s5">&amp;</span><span class="s1">squareName</span><span class="s5">) </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">auto </span><span class="s1">find1 </span><span class="s5">= </span><span class="s1">square_map</span><span class="s5">.</span><span class="s1">find</span><span class="s5">(</span><span class="s1">squareName</span><span class="s5">);</span>
+    <span class="s4">if </span><span class="s5">((</span><span class="s1">find1 </span><span class="s5">== </span><span class="s1">square_map</span><span class="s5">.</span><span class="s1">end</span><span class="s5">()) || </span><span class="s1">find1</span><span class="s5">-&gt;</span><span class="s1">second </span><span class="s5">== </span><span class="s4">nullptr </span><span class="s5">){</span>
+        <span class="s4">throw </span><span class="s1">runtime_error</span><span class="s5">(</span><span class="s3">&quot;Invalid square name: &quot; </span><span class="s5">+ </span><span class="s1">squareName</span><span class="s5">);</span>
+    <span class="s5">}</span>
+    <span class="s4">return </span><span class="s1">find1</span><span class="s5">-&gt;</span><span class="s1">second</span><span class="s5">-&gt;</span><span class="s1">get_mark</span><span class="s5">();</span>
+<span class="s5">}</span>
+<span class="s0">//game reset</span>
+<span class="s4">bool </span><span class="s1">GridModel::reset</span><span class="s5">() {</span>
+    <span class="s1">grid_data</span><span class="s5">.</span><span class="s1">resetGrid</span><span class="s5">();</span>
+    <span class="s1">initializeMaps</span><span class="s5">(); </span><span class="s0">//reinitializing pointers</span>
+    <span class="s4">return true</span><span class="s5">;</span>
+<span class="s5">}</span>
+<span class="s0">//Checks Grid for win</span>
+<span class="s4">bool </span><span class="s1">GridModel::isGridWin</span><span class="s5">(</span><span class="s1">Mark</span><span class="s5">&amp; </span><span class="s1">mark</span><span class="s5">, </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">winningRow</span><span class="s5">){</span>
+    <span class="s4">for </span><span class="s5">(</span><span class="s4">const auto</span><span class="s5">&amp; </span><span class="s1">pair : row_map</span><span class="s5">) {</span>
+        <span class="s4">const </span><span class="s1">string</span><span class="s5">&amp; </span><span class="s1">rowName </span><span class="s5">= </span><span class="s1">pair</span><span class="s5">.</span><span class="s1">first</span><span class="s5">;</span>
+        <span class="s4">const </span><span class="s1">vector</span><span class="s5">&lt;</span><span class="s1">Square</span><span class="s5">*&gt;&amp; </span><span class="s1">squares </span><span class="s5">= </span><span class="s1">pair</span><span class="s5">.</span><span class="s1">second</span><span class="s5">;</span>
+
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">squares</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s6">0</span><span class="s5">)-&gt;</span><span class="s1">is_empty</span><span class="s5">() ||</span>
+            <span class="s1">squares</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s6">1</span><span class="s5">)-&gt;</span><span class="s1">is_empty</span><span class="s5">() ||</span>
+            <span class="s1">squares</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s6">2</span><span class="s5">)-&gt;</span><span class="s1">is_empty</span><span class="s5">()) {</span>
+            <span class="s4">continue</span><span class="s5">;</span>
+            <span class="s5">}</span>
+        <span class="s0">//return &amp; assign get_mark()</span>
+        <span class="s1">Mark m1 </span><span class="s5">= </span><span class="s1">squares</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s6">0</span><span class="s5">)-&gt;</span><span class="s1">get_mark</span><span class="s5">();</span>
+        <span class="s1">Mark m2 </span><span class="s5">= </span><span class="s1">squares</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s6">1</span><span class="s5">)-&gt;</span><span class="s1">get_mark</span><span class="s5">();</span>
+        <span class="s1">Mark m3 </span><span class="s5">= </span><span class="s1">squares</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s6">2</span><span class="s5">)-&gt;</span><span class="s1">get_mark</span><span class="s5">();</span>
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">m1 </span><span class="s5">== </span><span class="s1">m2 </span><span class="s5">&amp;&amp; </span><span class="s1">m2 </span><span class="s5">== </span><span class="s1">m3</span><span class="s5">) {</span>
+            <span class="s1">mark </span><span class="s5">= </span><span class="s1">m1</span><span class="s5">;</span>
+            <span class="s1">winningRow </span><span class="s5">= </span><span class="s1">rowName</span><span class="s5">;</span>
+            <span class="s4">return true</span><span class="s5">;</span>
+        <span class="s5">}</span>
+    <span class="s5">}</span>
+    <span class="s1">winningRow </span><span class="s5">= </span><span class="s3">&quot;&quot;</span><span class="s5">;</span>
+    <span class="s4">return false</span><span class="s5">; </span><span class="s0">//Not a winner</span>
+<span class="s5">}</span>
+<span class="s4">bool </span><span class="s1">GridModel::isFull</span><span class="s5">() </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">return </span><span class="s1">grid_data</span><span class="s5">.</span><span class="s1">isGridFull</span><span class="s5">();</span>
+<span class="s5">}</span>
+
+<span class="s4">const </span><span class="s1">vector</span><span class="s5">&lt;</span><span class="s1">Square </span><span class="s5">*&gt; &amp;</span><span class="s1">GridModel::getSquaresInRow</span><span class="s5">(</span><span class="s4">const </span><span class="s1">string </span><span class="s5">&amp;</span><span class="s1">rowName</span><span class="s5">) </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">auto </span><span class="s1">find </span><span class="s5">= </span><span class="s1">row_map</span><span class="s5">.</span><span class="s1">find</span><span class="s5">(</span><span class="s1">rowName</span><span class="s5">);</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">find </span><span class="s5">!= </span><span class="s1">row_map</span><span class="s5">.</span><span class="s1">end</span><span class="s5">()) {</span>
+        <span class="s4">return </span><span class="s1">find</span><span class="s5">-&gt;</span><span class="s1">second</span><span class="s5">;</span>
+    <span class="s5">}</span>
+    <span class="s4">throw </span><span class="s1">runtime_error</span><span class="s5">(</span><span class="s3">&quot;Invalid row name: &quot; </span><span class="s5">+ </span><span class="s1">rowName</span><span class="s5">);</span>
+<span class="s5">}</span>
+<span class="s1">vector</span><span class="s5">&lt;</span><span class="s1">string</span><span class="s5">&gt; </span><span class="s1">GridModel::getALLSquareNames</span><span class="s5">() </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s1">vector</span><span class="s5">&lt;</span><span class="s1">string</span><span class="s5">&gt; </span><span class="s1">names</span><span class="s5">;</span>
+    <span class="s1">names</span><span class="s5">.</span><span class="s1">reserve</span><span class="s5">(</span><span class="s1">square_map</span><span class="s5">.</span><span class="s1">size</span><span class="s5">()); </span><span class="s0">// Reserve memory</span>
+    <span class="s4">for</span><span class="s5">(</span><span class="s4">const auto</span><span class="s5">&amp; </span><span class="s1">pair : square_map</span><span class="s5">) {</span>
+        <span class="s1">names</span><span class="s5">.</span><span class="s1">push_back</span><span class="s5">(</span><span class="s1">pair</span><span class="s5">.</span><span class="s1">first</span><span class="s5">);</span>
+    <span class="s5">}</span>
+
+    <span class="s4">return </span><span class="s1">names</span><span class="s5">;</span>
+<span class="s5">}</span>
+<span class="s4">const </span><span class="s1">Grid </span><span class="s5">&amp;</span><span class="s1">GridModel::getGridModel</span><span class="s5">() {</span>
+    <span class="s4">return </span><span class="s1">grid_data</span><span class="s5">;</span>
+<span class="s5">}</span>
+</pre>
+</body>
+</html>

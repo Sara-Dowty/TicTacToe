@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Grid.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+.s6 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Grid.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/3/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;Grid.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&lt;stdexcept&gt;</span>
+<span class="s2">#include </span><span class="s3">&lt;vector&gt;</span>
+<span class="s2">#include </span><span class="s3">&quot;Square.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;Row.h&quot;</span>
+
+<span class="s4">using namespace </span><span class="s1">std</span><span class="s5">;</span>
+
+<span class="s1">Grid::Grid</span><span class="s5">() {</span>
+    <span class="s0">//Initializing grid with 3 rows</span>
+    <span class="s4">for </span><span class="s5">(</span><span class="s4">int </span><span class="s1">row </span><span class="s5">= </span><span class="s6">0</span><span class="s5">; </span><span class="s1">row </span><span class="s5">&lt; </span><span class="s6">3</span><span class="s5">; </span><span class="s1">row</span><span class="s5">++) {</span>
+        <span class="s1">grid</span><span class="s5">.</span><span class="s1">emplace_back</span><span class="s5">();</span>
+    <span class="s5">}</span>
+<span class="s5">}</span>
+
+<span class="s0">//validate positions first</span>
+<span class="s4">bool </span><span class="s1">Grid::isValidSquarePosition</span><span class="s5">(</span><span class="s4">int </span><span class="s1">row</span><span class="s5">, </span><span class="s4">int </span><span class="s1">row2</span><span class="s5">) {</span>
+    <span class="s4">return </span><span class="s5">(</span><span class="s1">row </span><span class="s5">&gt;=</span><span class="s6">0 </span><span class="s5">&amp;&amp; </span><span class="s1">row </span><span class="s5">&lt;</span><span class="s6">3 </span><span class="s5">&amp;&amp; </span><span class="s1">row2 </span><span class="s5">&gt;=</span><span class="s6">0 </span><span class="s5">&amp;&amp; </span><span class="s1">row2 </span><span class="s5">&lt;</span><span class="s6">3</span><span class="s5">);</span>
+<span class="s5">}</span>
+<span class="s0">//Accessing</span>
+<span class="s1">Square </span><span class="s5">*</span><span class="s1">Grid::getSquarePtr</span><span class="s5">(</span><span class="s4">int </span><span class="s1">row1</span><span class="s5">, </span><span class="s4">int </span><span class="s1">row2</span><span class="s5">) {</span>
+    <span class="s4">if </span><span class="s5">(!</span><span class="s1">isValidSquarePosition</span><span class="s5">(</span><span class="s1">row1</span><span class="s5">, </span><span class="s1">row2</span><span class="s5">)) {</span>
+        <span class="s4">return nullptr</span><span class="s5">;</span>
+    <span class="s5">} </span><span class="s4">return </span><span class="s5">&amp;</span><span class="s1">grid</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s1">row1</span><span class="s5">).</span><span class="s1">getSquare</span><span class="s5">(</span><span class="s1">row2</span><span class="s5">);</span>
+
+<span class="s5">}</span>
+<span class="s4">const </span><span class="s1">Square </span><span class="s5">*</span><span class="s1">Grid::getSquarePtr</span><span class="s5">(</span><span class="s4">int </span><span class="s1">row1</span><span class="s5">, </span><span class="s4">int </span><span class="s1">row2</span><span class="s5">) </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">if </span><span class="s5">(!</span><span class="s1">isValidSquarePosition</span><span class="s5">(</span><span class="s1">row1</span><span class="s5">, </span><span class="s1">row2</span><span class="s5">)) {</span>
+        <span class="s4">return nullptr</span><span class="s5">;</span>
+    <span class="s5">} </span><span class="s4">return </span><span class="s5">&amp;</span><span class="s1">grid</span><span class="s5">.</span><span class="s1">at</span><span class="s5">(</span><span class="s1">row1</span><span class="s5">).</span><span class="s1">getSquare</span><span class="s5">(</span><span class="s1">row2</span><span class="s5">);</span>
+
+<span class="s5">}</span>
+<span class="s0">//verifies ability to add mark in spot</span>
+<span class="s4">bool </span><span class="s1">Grid::hasMark</span><span class="s5">(</span><span class="s4">int </span><span class="s1">r1</span><span class="s5">, </span><span class="s4">int </span><span class="s1">r2</span><span class="s5">, </span><span class="s1">Mark mark</span><span class="s5">) {</span>
+    <span class="s1">Square</span><span class="s5">* </span><span class="s1">squarePtr </span><span class="s5">= </span><span class="s1">getSquarePtr</span><span class="s5">(</span><span class="s1">r1</span><span class="s5">, </span><span class="s1">r2</span><span class="s5">);</span>
+    <span class="s4">if </span><span class="s5">(!</span><span class="s1">squarePtr</span><span class="s5">) {</span>
+        <span class="s4">return false</span><span class="s5">;</span>
+    <span class="s5">}</span>
+    <span class="s4">try </span><span class="s5">{</span>
+        <span class="s1">squarePtr </span><span class="s5">-&gt;</span><span class="s1">set_mark</span><span class="s5">(</span><span class="s1">mark</span><span class="s5">);</span>
+        <span class="s4">return true</span><span class="s5">;</span>
+    <span class="s5">} </span><span class="s4">catch </span><span class="s5">(</span><span class="s4">const </span><span class="s1">runtime_error</span><span class="s5">&amp; </span><span class="s1">e</span><span class="s5">) {</span>
+        <span class="s4">return false</span><span class="s5">;</span>
+    <span class="s5">}</span>
+<span class="s5">}</span>
+<span class="s0">//Verify unmarked square in grid</span>
+<span class="s4">bool </span><span class="s1">Grid::isSquareEmpty</span><span class="s5">(</span><span class="s4">int </span><span class="s1">r1</span><span class="s5">, </span><span class="s4">int </span><span class="s1">r2</span><span class="s5">) </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">const </span><span class="s1">Square</span><span class="s5">* </span><span class="s1">square_ptr </span><span class="s5">= </span><span class="s1">getSquarePtr</span><span class="s5">(</span><span class="s1">r1</span><span class="s5">, </span><span class="s1">r2</span><span class="s5">);</span>
+    <span class="s4">if </span><span class="s5">(!</span><span class="s1">square_ptr</span><span class="s5">) {</span>
+        <span class="s4">throw </span><span class="s1">out_of_range</span><span class="s5">(</span><span class="s3">&quot;Invalid square location&quot;</span><span class="s5">);</span>
+    <span class="s5">}</span>
+    <span class="s4">return </span><span class="s1">square_ptr</span><span class="s5">-&gt;</span><span class="s1">is_empty</span><span class="s5">();</span>
+<span class="s5">}</span>
+<span class="s1">Mark Grid::getMarkInGrid</span><span class="s5">(</span><span class="s4">int </span><span class="s1">r1</span><span class="s5">, </span><span class="s4">int </span><span class="s1">r2</span><span class="s5">) </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">const </span><span class="s1">Square</span><span class="s5">* </span><span class="s1">square_ptr </span><span class="s5">= </span><span class="s1">getSquarePtr</span><span class="s5">(</span><span class="s1">r1</span><span class="s5">, </span><span class="s1">r2</span><span class="s5">);</span>
+    <span class="s4">if </span><span class="s5">(!</span><span class="s1">square_ptr</span><span class="s5">) {</span>
+        <span class="s4">throw </span><span class="s1">out_of_range</span><span class="s5">(</span><span class="s3">&quot;Invalid square location&quot;</span><span class="s5">);</span>
+    <span class="s5">}</span>
+    <span class="s4">return </span><span class="s1">square_ptr</span><span class="s5">-&gt;</span><span class="s1">get_mark</span><span class="s5">();</span>
+<span class="s5">}</span>
+<span class="s0">//reset the grid to empty default</span>
+<span class="s4">void </span><span class="s1">Grid::resetGrid</span><span class="s5">() {</span>
+    <span class="s1">grid</span><span class="s5">.</span><span class="s1">clear</span><span class="s5">();</span>
+    <span class="s4">for </span><span class="s5">(</span><span class="s4">int </span><span class="s1">row </span><span class="s5">= </span><span class="s6">0</span><span class="s5">; </span><span class="s1">row </span><span class="s5">&lt; </span><span class="s6">3</span><span class="s5">; </span><span class="s1">row</span><span class="s5">++) {</span>
+        <span class="s1">grid</span><span class="s5">.</span><span class="s1">emplace_back</span><span class="s5">();</span>
+    <span class="s5">}</span>
+<span class="s5">}</span>
+<span class="s4">bool </span><span class="s1">Grid::isGridFull</span><span class="s5">() </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">for </span><span class="s5">(</span><span class="s4">int </span><span class="s1">row1 </span><span class="s5">= </span><span class="s6">0</span><span class="s5">; </span><span class="s1">row1 </span><span class="s5">&lt; </span><span class="s6">3</span><span class="s5">; </span><span class="s1">row1</span><span class="s5">++) {</span>
+        <span class="s4">for </span><span class="s5">(</span><span class="s4">int </span><span class="s1">row2 </span><span class="s5">= </span><span class="s6">0</span><span class="s5">; </span><span class="s1">row2 </span><span class="s5">&lt; </span><span class="s6">3</span><span class="s5">; </span><span class="s1">row2</span><span class="s5">++) {</span>
+            <span class="s4">if </span><span class="s5">(</span><span class="s1">getSquarePtr</span><span class="s5">(</span><span class="s1">row1</span><span class="s5">, </span><span class="s1">row2</span><span class="s5">)-&gt;</span><span class="s1">is_empty</span><span class="s5">()) {</span>
+                <span class="s4">return false</span><span class="s5">;</span>
+            <span class="s5">}</span>
+        <span class="s5">}</span>
+    <span class="s5">}</span>
+    <span class="s4">return true</span><span class="s5">; </span><span class="s0">//All squares checked, grid is full</span>
+<span class="s5">}</span>
+</pre>
+</body>
+</html>

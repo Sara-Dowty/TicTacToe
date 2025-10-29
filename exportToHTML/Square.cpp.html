@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Square.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Square.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/2/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;Square.h&quot;</span>
+
+<span class="s2">#include </span><span class="s3">&lt;stdexcept&gt;</span>
+<span class="s2">#include </span><span class="s3">&lt;string&gt;</span>
+
+<span class="s4">using namespace </span><span class="s1">std</span><span class="s5">;</span>
+
+<span class="s1">Square::Square</span><span class="s5">() {;</span>
+<span class="s5">}</span>
+
+<span class="s1">Mark Square::get_mark</span><span class="s5">() </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s4">this</span><span class="s5">-&gt;</span><span class="s1">is_empty</span><span class="s5">()) {</span>
+        <span class="s4">const </span><span class="s1">string message </span><span class="s5">= </span><span class="s3">&quot;Square is empty&quot;</span><span class="s5">;</span>
+        <span class="s4">throw </span><span class="s1">runtime_error</span><span class="s5">(</span><span class="s1">message</span><span class="s5">);</span>
+    <span class="s5">} </span><span class="s4">return this</span><span class="s5">-&gt;</span><span class="s1">mark</span><span class="s5">;</span>
+<span class="s5">}</span>
+<span class="s4">void </span><span class="s1">Square::set_mark</span><span class="s5">(</span><span class="s4">const </span><span class="s1">Mark </span><span class="s5">&amp;</span><span class="s1">new_mark</span><span class="s5">) {</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s4">this</span><span class="s5">-&gt;</span><span class="s1">is_empty</span><span class="s5">()) {</span>
+        <span class="s4">this</span><span class="s5">-&gt;</span><span class="s1">mark </span><span class="s5">= </span><span class="s1">new_mark</span><span class="s5">;</span>
+        <span class="s4">this</span><span class="s5">-&gt;</span><span class="s1">isEmpty </span><span class="s5">= </span><span class="s4">false</span><span class="s5">;</span>
+    <span class="s5">} </span><span class="s4">else </span><span class="s5">{</span>
+        <span class="s4">const </span><span class="s1">string message </span><span class="s5">= </span><span class="s3">&quot;Square is already marked.&quot;</span><span class="s5">;</span>
+        <span class="s4">throw </span><span class="s1">runtime_error</span><span class="s5">(</span><span class="s1">message</span><span class="s5">);</span>
+    <span class="s5">}</span>
+<span class="s5">}</span>
+
+
+
+
+</pre>
+</body>
+</html>

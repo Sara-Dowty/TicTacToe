@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Player.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #bcbec4;}
+.s5 { color: #cf8e6d;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Player.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/6/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;Player.h&quot;</span>
+<span class="s0">//default constructor</span>
+<span class="s1">Player::Player</span><span class="s4">() </span><span class="s1">: mark</span><span class="s4">(</span><span class="s1">Mark::X</span><span class="s4">) {</span>
+    <span class="s0">//default</span>
+<span class="s4">}</span>
+<span class="s0">//mutator</span>
+<span class="s5">void </span><span class="s1">Player::assignMark</span><span class="s4">(</span><span class="s1">Mark mark</span><span class="s4">) {</span>
+    <span class="s5">this</span><span class="s4">-&gt;</span><span class="s1">mark </span><span class="s4">= </span><span class="s1">mark</span><span class="s4">;</span>
+<span class="s4">}</span>
+<span class="s0">//accessor</span>
+<span class="s1">Mark Player::getMark</span><span class="s4">() {</span>
+    <span class="s5">return </span><span class="s1">mark</span><span class="s4">;</span>
+<span class="s4">}</span>
+
+</pre>
+</body>
+</html>

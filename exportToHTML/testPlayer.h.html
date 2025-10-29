@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>testPlayer.h</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+testPlayer.h</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/10/2025.</span>
+<span class="s0">//</span>
+
+<span class="s0">// File: TestPlayer.h</span>
+<span class="s2">#ifndef </span><span class="s1">TEST_PLAYER_H</span>
+<span class="s2">#define </span><span class="s1">TEST_PLAYER_H</span>
+
+<span class="s2">#include </span><span class="s3">&lt;string&gt;</span>
+
+<span class="s0">// We don't need to include Player.h here, as we can forward-declare it.</span>
+<span class="s0">// The .cpp file will need the full include.</span>
+<span class="s4">class </span><span class="s1">Player</span><span class="s5">;</span>
+
+<span class="s4">class </span><span class="s1">TestPlayer </span><span class="s5">{</span>
+<span class="s4">public</span><span class="s1">:</span>
+    <span class="s1">TestPlayer</span><span class="s5">();</span>
+
+    <span class="s0">// The main function to call to run all tests for the Player class.</span>
+    <span class="s4">void </span><span class="s1">runAllTests</span><span class="s5">();</span>
+
+<span class="s4">private</span><span class="s1">:</span>
+    <span class="s0">// --- Test Case Methods ---</span>
+    <span class="s4">bool </span><span class="s1">testAssignAndGetMark_AssignsX</span><span class="s5">();</span>
+    <span class="s4">bool </span><span class="s1">testAssignAndGetMark_AssignsO</span><span class="s5">();</span>
+    <span class="s4">bool </span><span class="s1">testReassignMark_CanChangeMark</span><span class="s5">();</span>
+
+    <span class="s0">// --- Helper Method ---</span>
+    <span class="s4">void </span><span class="s1">reportTestResult</span><span class="s5">(</span><span class="s4">const </span><span class="s1">std::string</span><span class="s5">&amp; </span><span class="s1">testName</span><span class="s5">, </span><span class="s4">bool </span><span class="s1">passed</span><span class="s5">, </span><span class="s4">const </span><span class="s1">std::string</span><span class="s5">&amp; </span><span class="s1">message </span><span class="s5">= </span><span class="s3">&quot;&quot;</span><span class="s5">);</span>
+    <span class="s4">unsigned int </span><span class="s1">testsPassedCount</span><span class="s5">;</span>
+    <span class="s4">unsigned int </span><span class="s1">testsFailedCount</span><span class="s5">;</span>
+<span class="s5">};</span>
+
+<span class="s2">#endif </span><span class="s0">//TEST_PLAYER_H</span></pre>
+</body>
+</html>

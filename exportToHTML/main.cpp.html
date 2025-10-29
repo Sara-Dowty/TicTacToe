@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>main.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+.s6 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//Sara Dowty</span>
+<span class="s0">//Object Orientation</span>
+
+<span class="s2">#include </span><span class="s3">&lt;iostream&gt;</span>
+<span class="s0">//#include &quot;testRow.h&quot;</span>
+<span class="s0">//#include &quot;testPlayer.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;TicTacToe.h&quot;</span>
+
+<span class="s4">using namespace </span><span class="s1">std</span><span class="s5">;</span>
+
+<span class="s0">// This function will run all the tests defined in the TestRow class</span>
+<span class="s0">/*void run_all_row_tests() { 
+    TestRow rowTestSuite; 
+    rowTestSuite.runAllTests(); 
+} 
+// This function will run all the tests defined in the TestPlayer class 
+void run_all_player_tests() { 
+    TestPlayer playerTestSuite; 
+    playerTestSuite.runAllTests(); 
+} 
+*/</span>
+
+<span class="s4">int </span><span class="s1">main</span><span class="s5">(</span><span class="s4">int </span><span class="s1">argc</span><span class="s5">, </span><span class="s4">char </span><span class="s5">*</span><span class="s1">argv</span><span class="s5">[]) {</span>
+    <span class="s1">cout </span><span class="s5">&lt;&lt; </span><span class="s3">&quot;Application: Starting TicTacToe...&quot; </span><span class="s5">&lt;&lt; </span><span class="s1">std::endl</span><span class="s5">;</span>
+
+    <span class="s0">// --- Execute Tests for Square Class ---</span>
+    <span class="s0">//TestSquare squareTestRunner; // Create an instance of our test class</span>
+    <span class="s0">//squareTestRunner.runAllTests(); // Call the method that runs all tests</span>
+    <span class="s0">//TEST for Row Class</span>
+    <span class="s0">//run_all_row_tests();</span>
+    <span class="s0">//TEST for Grid Class</span>
+    <span class="s0">//TestGrid gridTestRunner;</span>
+    <span class="s0">//gridTestRunner.runAllTests();</span>
+    <span class="s0">//testing player</span>
+    <span class="s0">//run_all_player_tests();</span>
+    <span class="s0">/*Grid game1; 
+    game1.addMark(&quot;topLeftSquare&quot;, Mark::X); 
+    game1.addMark(&quot;topRightSquare&quot;, Mark::O); 
+    game1.addMark(&quot;bottomLeftSquare&quot;, Mark::X); 
+    game1.addMark(&quot;center&quot;, Mark::O); 
+    GridView game1View(game1); 
+    game1View.displayWelcomeMessage(); 
+    game1View.displayGrid(); 
+    game1View.playerTurnprompt(Mark::X); 
+    */</span>
+    <span class="s0">//PLAY TICTACTOE</span>
+    <span class="s1">TicTacToe game1</span><span class="s5">;</span>
+    <span class="s1">game1</span><span class="s5">.</span><span class="s1">startGame</span><span class="s5">();</span>
+
+    <span class="s1">cout </span><span class="s5">&lt;&lt; </span><span class="s3">&quot;Application: Shutting down.&quot; </span><span class="s5">&lt;&lt; </span><span class="s1">std::endl</span><span class="s5">;</span>
+    <span class="s0">// ... any further logic of your main application ...</span>
+
+
+    <span class="s4">return </span><span class="s6">0</span><span class="s5">;</span>
+<span class="s5">}</span></pre>
+</body>
+</html>

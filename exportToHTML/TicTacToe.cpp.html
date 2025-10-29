@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>TicTacToe.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TicTacToe.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/10/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#include </span><span class="s3">&quot;TicTacToe.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&lt;iostream&gt;</span>
+<span class="s2">#include </span><span class="s3">&lt;string&gt;</span>
+
+<span class="s4">using namespace </span><span class="s1">std</span><span class="s5">;</span>
+<span class="s0">//Constructor</span>
+<span class="s1">TicTacToe::TicTacToe</span><span class="s5">() </span><span class="s1">: gridModel</span><span class="s5">(), </span><span class="s1">gridView </span><span class="s5">(</span><span class="s1">gridModel</span><span class="s5">){</span>
+    <span class="s0">//Default empty</span>
+<span class="s5">}</span>
+<span class="s0">//Starting the TicTacToe Game</span>
+<span class="s4">void </span><span class="s1">TicTacToe::startGame</span><span class="s5">() {</span>
+    <span class="s1">gridView</span><span class="s5">.</span><span class="s1">displayWelcomeMessage</span><span class="s5">();</span>
+    <span class="s1">initializeGame</span><span class="s5">();</span>
+    <span class="s1">gameLoop</span><span class="s5">();</span>
+    <span class="s1">gridView</span><span class="s5">.</span><span class="s1">displayGameOver</span><span class="s5">();</span>
+    <span class="s5">}</span>
+<span class="s0">//TicTacToe main game loop until gameover</span>
+<span class="s4">void </span><span class="s1">TicTacToe::initializeGame</span><span class="s5">() {</span>
+    <span class="s1">gridModel</span><span class="s5">.</span><span class="s1">reset</span><span class="s5">();</span>
+    <span class="s1">player1</span><span class="s5">.</span><span class="s1">assignMark</span><span class="s5">(</span><span class="s1">Mark::X</span><span class="s5">);</span>
+    <span class="s1">player2</span><span class="s5">.</span><span class="s1">assignMark</span><span class="s5">(</span><span class="s1">Mark::O</span><span class="s5">);</span>
+    <span class="s1">currentPlayerMark </span><span class="s5">= </span><span class="s1">Mark::X</span><span class="s5">; </span><span class="s0">//Player1 X always starts</span>
+<span class="s5">}</span>
+<span class="s0">//GameLoop</span>
+<span class="s4">void </span><span class="s1">TicTacToe::gameLoop</span><span class="s5">() {</span>
+    <span class="s4">while </span><span class="s5">(</span><span class="s4">true</span><span class="s5">) {</span>
+        <span class="s1">gridView</span><span class="s5">.</span><span class="s1">displayGrid</span><span class="s5">();</span>
+        <span class="s1">handlePlayerTurn</span><span class="s5">();</span>
+
+        <span class="s4">if </span><span class="s5">(</span><span class="s1">isGameOver</span><span class="s5">()) {</span>
+            <span class="s4">break</span><span class="s5">;</span>
+        <span class="s5">}</span>
+        <span class="s1">switchPlayerTurn</span><span class="s5">();</span>
+    <span class="s5">}</span>
+<span class="s5">}</span>
+
+<span class="s0">//Switching current player mark</span>
+<span class="s4">void </span><span class="s1">TicTacToe::switchPlayerTurn</span><span class="s5">() {</span>
+    <span class="s1">currentPlayerMark </span><span class="s5">= (</span><span class="s1">currentPlayerMark </span><span class="s5">== </span><span class="s1">Mark::X</span><span class="s5">) </span><span class="s1">? Mark::O : Mark::X</span><span class="s5">;</span>
+<span class="s5">}</span>
+<span class="s0">//Managing input and placing a mark</span>
+<span class="s4">void </span><span class="s1">TicTacToe::handlePlayerTurn</span><span class="s5">() {</span>
+    <span class="s4">while </span><span class="s5">(</span><span class="s4">true</span><span class="s5">) {</span>
+        <span class="s1">gridView</span><span class="s5">.</span><span class="s1">playerTurnprompt</span><span class="s5">(</span><span class="s1">currentPlayerMark</span><span class="s5">);</span>
+        <span class="s1">string input</span><span class="s5">;</span>
+        <span class="s1">cin </span><span class="s5">&gt;&gt; </span><span class="s1">input</span><span class="s5">;</span>
+        <span class="s0">//HERE</span>
+        <span class="s1">string squareName </span><span class="s5">= </span><span class="s1">inputToSquareName</span><span class="s5">(</span><span class="s1">input</span><span class="s5">);</span>
+        <span class="s4">if </span><span class="s5">(!</span><span class="s1">squareName</span><span class="s5">.</span><span class="s1">empty</span><span class="s5">() &amp;&amp; </span><span class="s1">gridModel</span><span class="s5">.</span><span class="s1">hasMark</span><span class="s5">(</span><span class="s1">squareName</span><span class="s5">, </span><span class="s1">currentPlayerMark</span><span class="s5">)) {</span>
+            <span class="s4">break</span><span class="s5">; </span><span class="s0">//Valid move</span>
+        <span class="s5">} </span><span class="s4">else </span><span class="s5">{</span>
+            <span class="s1">gridView</span><span class="s5">.</span><span class="s1">displayInvalidMoveMessage</span><span class="s5">(</span><span class="s1">input</span><span class="s5">); </span><span class="s0">//Invalid move input. PromptAgain.</span>
+        <span class="s5">}</span>
+    <span class="s5">}</span>
+<span class="s5">}</span>
+<span class="s0">//bool is gameover: win, catsgame, full</span>
+<span class="s4">bool </span><span class="s1">TicTacToe::isGameOver</span><span class="s5">() {</span>
+    <span class="s1">Mark winner</span><span class="s5">;</span>
+    <span class="s1">string winningRow</span><span class="s5">;</span>
+
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">gridModel</span><span class="s5">.</span><span class="s1">isGridWin</span><span class="s5">(</span><span class="s1">winner</span><span class="s5">, </span><span class="s1">winningRow</span><span class="s5">)) {</span>
+        <span class="s1">gridView</span><span class="s5">.</span><span class="s1">displayGrid</span><span class="s5">();</span>
+        <span class="s1">gridView</span><span class="s5">.</span><span class="s1">displayWinner</span><span class="s5">(</span><span class="s1">winner</span><span class="s5">, </span><span class="s1">winningRow</span><span class="s5">);</span>
+        <span class="s4">return true</span><span class="s5">; </span><span class="s0">//game is over = winner!</span>
+    <span class="s5">}</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">gridModel</span><span class="s5">.</span><span class="s1">isFull</span><span class="s5">()) {</span>
+        <span class="s1">gridView</span><span class="s5">.</span><span class="s1">displayGrid</span><span class="s5">();</span>
+        <span class="s1">gridView</span><span class="s5">.</span><span class="s1">displayCatsGame</span><span class="s5">();</span>
+        <span class="s4">return true</span><span class="s5">; </span><span class="s0">//game is full &amp; over</span>
+    <span class="s5">}</span>
+    <span class="s4">return false</span><span class="s5">; </span><span class="s0">//Game is NOT over</span>
+<span class="s5">}</span>
+<span class="s0">//Converting the rows</span>
+<span class="s1">std::string TicTacToe::inputToSquareName</span><span class="s5">(</span><span class="s4">const </span><span class="s1">std::string input</span><span class="s5">) </span><span class="s4">const </span><span class="s5">{</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;1&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;topLeftSquare&quot;</span><span class="s5">;</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;2&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;topMiddleSquare&quot;</span><span class="s5">;</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;3&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;topRightSquare&quot;</span><span class="s5">;</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;4&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;middleLeftSquare&quot;</span><span class="s5">;</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;5&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;center&quot;</span><span class="s5">;</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;6&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;middleRightSquare&quot;</span><span class="s5">;</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;7&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;bottomLeftSquare&quot;</span><span class="s5">;</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;8&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;bottomMiddleSquare&quot;</span><span class="s5">;</span>
+    <span class="s4">if </span><span class="s5">(</span><span class="s1">input </span><span class="s5">== </span><span class="s3">&quot;9&quot;</span><span class="s5">) </span><span class="s4">return </span><span class="s3">&quot;bottomRightSquare&quot;</span><span class="s5">;</span>
+
+    <span class="s4">return </span><span class="s3">&quot;&quot;</span><span class="s5">; </span><span class="s0">// Return empty string for invalid input</span>
+<span class="s5">}</span>
+</pre>
+</body>
+</html>

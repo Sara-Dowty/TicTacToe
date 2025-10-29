@@ -1,0 +1,24 @@
+# ninja log v6
+18	654	7713691776433604	CMakeFiles/tictactoeSource_SaraDowty.dir/Square.cpp.obj	69d38123eea2b6f1
+12	1009	7713691776383767	CMakeFiles/tictactoeSource_SaraDowty.dir/main.cpp.obj	15ee504d9914d450
+22	938	7713691776478538	CMakeFiles/tictactoeSource_SaraDowty.dir/test_Square.cpp.obj	dab82ab4f109f8c9
+37	790	7713691776630777	CMakeFiles/tictactoeSource_SaraDowty.dir/Grid.cpp.obj	93b5bbcfbeb97883
+906	1672	7713691785316218	CMakeFiles/tictactoeSource_SaraDowty.dir/TicTacToe.cpp.obj	7ca22630dcb69fef
+757	946	7713692659329698	tictactoeSource_SaraDowty.exe	6d63f5223f1c02d0
+27	906	7713691776528597	CMakeFiles/tictactoeSource_SaraDowty.dir/Row.cpp.obj	ec53cb973e077c18
+32	1078	7713691776574620	CMakeFiles/tictactoeSource_SaraDowty.dir/testRow.cpp.obj	6a8ea58073461a89
+60	1120	7713053866045133	CMakeFiles/tictactoeSource_SaraDowty.dir/TestGrid.cpp.obj	74c8271a9b27111e
+790	1520	7713691784161856	CMakeFiles/tictactoeSource_SaraDowty.dir/GridView.cpp.obj	c60f136d30848cea
+655	757	7713691782813178	CMakeFiles/tictactoeSource_SaraDowty.dir/Player.cpp.obj	65eaf23bfb5103f5
+758	1477	7713691783835009	CMakeFiles/tictactoeSource_SaraDowty.dir/testPlayer.cpp.obj	f71a88e256dfff07
+19	757	7713692651944244	CMakeFiles/tictactoeSource_SaraDowty.dir/GridModel.cpp.obj	3162055ca89f7fb7
+20	303	7713872699139476	build.ninja	da53ed3297f783f5
+10	19	7713691773663592	clean	10584ca9b26f8b04
+72	2673	7713892320812308	CMakeFiles/tictactoeSource_SaraDowty.dir/Grid.cpp.obj	93b5bbcfbeb97883
+54	3158	7713892320630752	CMakeFiles/tictactoeSource_SaraDowty.dir/Row.cpp.obj	ec53cb973e077c18
+82	3240	7713892320915052	CMakeFiles/tictactoeSource_SaraDowty.dir/GridView.cpp.obj	c60f136d30848cea
+43	3456	7713892320530091	CMakeFiles/tictactoeSource_SaraDowty.dir/main.cpp.obj	15ee504d9914d450
+91	3795	7713892321013877	CMakeFiles/tictactoeSource_SaraDowty.dir/TicTacToe.cpp.obj	7ca22630dcb69fef
+62	3878	7713892320715823	CMakeFiles/tictactoeSource_SaraDowty.dir/testRow.cpp.obj	6a8ea58073461a89
+2675	5436	7713892346854862	CMakeFiles/tictactoeSource_SaraDowty.dir/GridModel.cpp.obj	3162055ca89f7fb7
+5436	6383	7713892374462452	tictactoeSource_SaraDowty.exe	6d63f5223f1c02d0

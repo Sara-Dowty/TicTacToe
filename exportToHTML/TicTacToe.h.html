@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>TicTacToe.h</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #7a7e85;}
+.s1 { color: #bcbec4;}
+.s2 { color: #b3ae60;}
+.s3 { color: #6aab73;}
+.s4 { color: #cf8e6d;}
+.s5 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TicTacToe.h</font>
+</center></td></tr></table>
+<pre><span class="s0">//</span>
+<span class="s0">// Created by dowty on 6/10/2025.</span>
+<span class="s0">//</span>
+
+<span class="s2">#ifndef </span><span class="s1">TICTACTOE_H</span>
+<span class="s2">#define </span><span class="s1">TICTACTOE_H</span>
+<span class="s2">#include </span><span class="s3">&quot;GridView.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;GridModel.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;Player.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&quot;Mark.h&quot;</span>
+<span class="s2">#include </span><span class="s3">&lt;string&gt;</span>
+
+<span class="s4">class </span><span class="s1">TicTacToe </span><span class="s5">{</span>
+<span class="s4">public</span><span class="s1">:</span>
+    <span class="s0">//Constructor initializing game</span>
+    <span class="s1">TicTacToe</span><span class="s5">();</span>
+    <span class="s0">//Initializing  the game</span>
+    <span class="s4">void </span><span class="s1">startGame</span><span class="s5">();</span>
+<span class="s4">private</span><span class="s1">:</span>
+    <span class="s0">//Variable</span>
+    <span class="s1">GridModel gridModel</span><span class="s5">;  </span><span class="s0">//Holding the game state</span>
+    <span class="s1">GridView gridView</span><span class="s5">;  </span><span class="s0">//Displaying grid &amp; messages</span>
+    <span class="s1">Player player1</span><span class="s5">; </span><span class="s0">//Player1, X</span>
+    <span class="s1">Player player2</span><span class="s5">; </span><span class="s0">//Player2, O</span>
+    <span class="s1">Mark currentPlayerMark</span><span class="s5">; </span><span class="s0">//Tracking turn 'X' or 'O'</span>
+    <span class="s0">//Helper functions</span>
+    <span class="s4">void </span><span class="s1">initializeGame</span><span class="s5">(); </span><span class="s0">//Setting up player marks, starting grid</span>
+    <span class="s4">void </span><span class="s1">gameLoop</span><span class="s5">(); </span><span class="s0">//Contains the main game for player turn</span>
+    <span class="s4">void </span><span class="s1">handlePlayerTurn</span><span class="s5">(); </span><span class="s0">//Managing player turn</span>
+    <span class="s4">void </span><span class="s1">switchPlayerTurn</span><span class="s5">(); </span><span class="s0">//Switching from X to O and O to X</span>
+    <span class="s4">bool </span><span class="s1">isGameOver</span><span class="s5">(); </span><span class="s0">//Checking game win, cats game, full</span>
+    <span class="s0">//Mapping user input square numbers with name</span>
+    <span class="s5">[[</span><span class="s1">nodiscard</span><span class="s5">]] </span><span class="s1">std::string inputToSquareName</span><span class="s5">(</span><span class="s4">const </span><span class="s1">std::string input</span><span class="s5">) </span><span class="s4">const</span><span class="s5">;</span>
+<span class="s5">};</span>
+
+
+
+<span class="s2">#endif </span><span class="s0">//TICTACTOE_H</span>
+</pre>
+</body>
+</html>
